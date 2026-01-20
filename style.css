@@ -353,3 +353,8 @@ body {
 /* ========================================
    Responsive Design - Desktop (1440px)
    ======================================== */
+@media (min-width: 1440px) {
+	.blog-card {
+		inline-size: 24rem;
+	}
+}
