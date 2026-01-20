@@ -1,4 +1,44 @@
 /* ========================================
+   Local Fonts Import
+   ======================================== */
+
+/* Figtree Variable Font */
+@font-face {
+	font-family: "Figtree";
+	src: url("assets/fonts/Figtree-VariableFont_wght.ttf") format("truetype");
+	font-weight: 100 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Figtree Italic Variable Font */
+@font-face {
+	font-family: "Figtree";
+	src: url("assets/fonts/Figtree-Italic-VariableFont_wght.ttf")
+		format("truetype");
+	font-weight: 100 900;
+	font-style: italic;
+	font-display: swap;
+}
+
+/* Figtree Static Fonts (fallback) */
+@font-face {
+	font-family: "Figtree";
+	src: url("assets/fonts/static/Figtree-Medium.ttf") format("truetype");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Figtree";
+	src: url("assets/fonts/static/Figtree-ExtraBold.ttf") format("truetype");
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* ========================================
    CSS Reset
    ======================================== */
 
@@ -101,35 +141,238 @@ textarea:not([rows]) {
 
 /* ========================================
    CSS Custom Properties (Variables)
+   Based on Style Guide
    ======================================== */
 
 :root {
-	/* Colors */
+	/* Primary Colors */
 	--color-yellow: hsl(47, 88%, 63%);
+
+	/* Neutral Colors */
 	--color-white: hsl(0, 0%, 100%);
 	--color-gray-500: hsl(0, 0%, 42%);
 	--color-gray-950: hsl(0, 0%, 7%);
 
 	/* Typography */
 	--font-family: "Figtree", sans-serif;
-	--font-weight-regular: 500;
-	--font-weight-bold: 800;
-	--font-size-base: 16px;
+	--font-weight-medium: 500;
+	--font-weight-extra-bold: 800;
 
-	/* Layout */
-	--mobile-width: 375px;
-	--desktop-width: 1440px;
+	/* Font Sizes */
+	--font-size-paragraph: 1rem; /* 16px base */
+	--font-size-heading: 1.5rem; /* 24px mobile */
+	--font-size-category: 0.875rem; /* 14px */
+	--font-size-date: 0.875rem; /* 14px */
+	--font-size-author: 0.875rem; /* 14px */
+
+	/* Spacing */
+	--spacing-xs: 0.5rem; /* 8px */
+	--spacing-sm: 0.75rem; /* 12px */
+	--spacing-md: 1rem; /* 16px */
+	--spacing-lg: 1.5rem; /* 24px */
+	--spacing-xl: 2rem; /* 32px */
+
+	/* Border Radius */
+	--radius-sm: 0.25rem; /* 4px */
+	--radius-md: 0.625rem; /* 10px */
+	--radius-lg: 1.25rem; /* 20px */
+	--radius-full: 50%;
+
+	/* Card Properties */
+	--card-border-width: 1px;
+	--card-shadow-offset: 8px;
+	--card-shadow-offset-hover: 16px;
+	--card-padding: 1.5rem;
+
+	/* Avatar Size */
+	--avatar-size: 2rem; /* 32px */
+
+	/* Layout Breakpoints */
+	--breakpoint-mobile: 375px;
+	--breakpoint-desktop: 1440px;
+
+	/* Transitions */
+	--transition-speed: 0.3s;
+	--transition-timing: ease;
 }
 
 /* ========================================
-   Attribution
+   Base Styles (Mobile First - 375px)
    ======================================== */
 
+body {
+	font-family: var(--font-family);
+	font-size: var(--font-size-paragraph);
+	font-weight: var(--font-weight-medium);
+	background-color: var(--color-yellow);
+	color: var(--color-gray-950);
+	line-height: 1.5;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-block-size: 100vh;
+	padding: var(--spacing-lg);
+}
+
+.container {
+	inline-size: 100%;
+	max-inline-size: 327px;
+}
+
+.blog-card {
+	background-color: var(--color-white);
+	border: var(--card-border-width) solid var(--color-gray-950);
+	border-radius: var(--radius-lg);
+	padding: var(--card-padding);
+	box-shadow: var(--card-shadow-offset) var(--card-shadow-offset) 0 0
+		var(--color-gray-950);
+	transition:
+		box-shadow var(--transition-speed) var(--transition-timing),
+		transform var(--transition-speed) var(--transition-timing);
+}
+
+.blog-card:hover {
+	box-shadow: var(--card-shadow-offset-hover) var(--card-shadow-offset-hover) 0
+		0 var(--color-gray-950);
+	transform: translate(-2px, -2px);
+}
+
+.blog-card__image {
+	margin-block-end: var(--spacing-lg);
+	border-radius: var(--radius-md);
+	overflow: hidden;
+}
+
+.blog-card__image img {
+	inline-size: 100%;
+	block-size: auto;
+	display: block;
+	object-fit: cover;
+}
+
+.blog-card__content {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-sm);
+}
+
+.blog-card__category {
+	display: inline-block;
+	align-self: flex-start;
+	background-color: var(--color-yellow);
+	color: var(--color-gray-950);
+	font-weight: var(--font-weight-extra-bold);
+	font-size: var(--font-size-category);
+	padding-block: 0.25rem;
+	padding-inline: 0.75rem;
+	border-radius: var(--radius-sm);
+	line-height: 1.5;
+}
+
+.blog-card__date {
+	font-size: var(--font-size-date);
+	font-weight: var(--font-weight-medium);
+	color: var(--color-gray-950);
+	line-height: 1.5;
+}
+
+.blog-card__title {
+	font-size: var(--font-size-heading);
+	font-weight: var(--font-weight-extra-bold);
+	line-height: 1.5;
+	margin-block: var(--spacing-sm);
+}
+
+.blog-card__link {
+	color: var(--color-gray-950);
+	text-decoration: none;
+	transition: color var(--transition-speed) var(--transition-timing);
+}
+
+.blog-card__link:hover,
+.blog-card__link:focus {
+	color: var(--color-yellow);
+}
+
+.blog-card__link:focus-visible {
+	outline: 2px solid var(--color-yellow);
+	outline-offset: 4px;
+	border-radius: var(--radius-sm);
+}
+
+.blog-card__description {
+	font-size: var(--font-size-paragraph);
+	font-weight: var(--font-weight-medium);
+	color: var(--color-gray-500);
+	line-height: 1.5;
+	margin-block-start: var(--spacing-sm);
+	margin-block-end: var(--spacing-md);
+}
+
+.blog-card__author {
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-sm);
+	margin-block-start: var(--spacing-sm);
+}
+
+.blog-card__avatar {
+	inline-size: var(--avatar-size);
+	block-size: var(--avatar-size);
+	object-fit: cover;
+	flex-shrink: 0;
+}
+
+.blog-card__author-name {
+	font-size: var(--font-size-author);
+	font-weight: var(--font-weight-extra-bold);
+	color: var(--color-gray-950);
+	line-height: 1.5;
+}
+
 .attribution {
-	font-size: 11px;
+	font-size: 0.7rem;
 	text-align: center;
+	margin-block-start: var(--spacing-lg);
+	color: var(--color-gray-950);
+	font-weight: var(--font-weight-medium);
 }
 
 .attribution a {
-	color: hsl(228, 45%, 44%);
+	columns: var(--color-gray-950);
+	font-weight: var(--font-weight-extra-bold);
+	transition: color var(--transition-speed) var(--transition-timing);
+}
+
+.attribution a:hover,
+.attribution a:focus {
+	color: var(--color-white);
+}
+
+/* ========================================
+   Responsive Design - Desktop (1440px)
+   ======================================== */
+
+@media (min-width: 90rem) {
+	/* 1440px */
+	body {
+		padding: var(--spacing-xl);
+	}
+
+	.container {
+		max-inline-size: 384px; /* Card size fija en desktop */
+	}
+
+	/* Ajustar tamaños de fuente si es necesario en desktop */
+	.blog-card__title {
+		font-size: 1.5rem; /* 24px - mantener consistente */
+	}
+
+	/* Mejorar las interacciones en dispositivos con cursor */
+	.blog-card,
+	.blog-card__link,
+	a.blog-card__author-name {
+		cursor: pointer;
+	}
 }
