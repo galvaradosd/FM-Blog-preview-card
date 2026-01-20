@@ -353,26 +353,3 @@ body {
 /* ========================================
    Responsive Design - Desktop (1440px)
    ======================================== */
-
-@media (min-width: 90rem) {
-	/* 1440px */
-	body {
-		padding: var(--spacing-xl);
-	}
-
-	.container {
-		max-inline-size: 384px; /* Card size fija en desktop */
-	}
-
-	/* Ajustar tamaños de fuente si es necesario en desktop */
-	.blog-card__title {
-		font-size: 1.5rem; /* 24px - mantener consistente */
-	}
-
-	/* Mejorar las interacciones en dispositivos con cursor */
-	.blog-card,
-	.blog-card__link,
-	a.blog-card__author-name {
-		cursor: pointer;
-	}
-}
